@@ -8,13 +8,13 @@ import com.jogamp.opengl.util.texture.Texture;
 import com.jogamp.opengl.util.texture.TextureIO;
 
 import javax.swing.*;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Lab1 implements GLEventListener {
     private GLU glu = new GLU();
@@ -22,6 +22,8 @@ public class Lab1 implements GLEventListener {
     private final float letterDepth = 2f;
     private float rtri = 0;  //for angle of rotation
     private int brickTexture;
+
+    private static String vertexExportFilename = "vertex_array.txt";
     private double[][] vertexData = {
             // T rects
             {0.0, 0.0},
@@ -116,6 +118,12 @@ public class Lab1 implements GLEventListener {
         gl.glFlush();
 
         rtri += 0.2f;
+        List<Quad> mergedQuads = Stream.of(frontQuads, backQuads, sideQuads)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+
+        generateVertexArray(mergedQuads);
+
 //        gl.glEnable( GL2.GL_LIGHTING );
 //        gl.glEnable( GL2.GL_LIGHT0 );
 //        gl.glEnable( GL2.GL_NORMALIZE );
@@ -223,4 +231,37 @@ public class Lab1 implements GLEventListener {
         }
         return sideQuads;
     }
+
+    private static void generateVertexArray(List<Quad> quads) {
+        List<Float> arrayBuffer = new ArrayList<>();
+        for (Quad quad :
+                quads) {
+            float[][] coordinates = quad.getCoordinates();
+            for (int i = 0; i < 4; i++) {
+                for (int j = 0; j < 3; j++) {
+                    arrayBuffer.add(coordinates[i][j]);
+                }
+            }
+        }
+
+        try {
+            ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+            File file = new File(classLoader.getResource(vertexExportFilename).getFile());
+            BufferedWriter outputWriter = new BufferedWriter(new FileWriter(file.getAbsoluteFile()));
+
+            arrayBuffer.stream().forEach(x -> {
+                try {
+                    outputWriter.write((float)Math.round(x*100f)/100f + "");
+                    outputWriter.newLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            outputWriter.flush();
+            outputWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
