@@ -167,7 +167,6 @@ public class Lab1 implements GLEventListener {
         gl.glViewport(0, 0, width, height);
         gl.glMatrixMode(GL2.GL_PROJECTION);
         gl.glLoadIdentity();
-
         glu.gluPerspective(45.0f, aspect, 0.1f, 1000.0f);
         gl.glMatrixMode(GL2.GL_MODELVIEW);
         gl.glLoadIdentity();
