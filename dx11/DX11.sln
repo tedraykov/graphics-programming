@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1145
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{41ACBEF1-B159-4C49-A0F9-A07911617B52}"
 EndProject
@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{79
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-BoxDemo", "BoxDemo\2-BoxDemo.csproj", "{2183B279-2804-4749-803E-3DD4DD8EA9D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5-SkullDemo", "SkullDemo\5-SkullDemo.csproj", "{85770DD8-59C4-48E6-BDD5-26760B9691B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3.2-Skull", "SkullDemo\Lab3.2-Skull.csproj", "{85770DD8-59C4-48E6-BDD5-26760B9691B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7-LightingDemo", "LightingDemo\7-LightingDemo.csproj", "{C817B76A-97D4-4CC1-9651-3D405934AC83}"
 EndProject
@@ -77,6 +77,9 @@ Global
 		{BEDF8CD8-078B-4BC6-A388-B63D36499ABB} = {16C6CAB6-7D86-4043-98AE-7621BC136AA1}
 		{16C6CAB6-7D86-4043-98AE-7621BC136AA1} = {79E45F9D-B161-4C12-AB0D-306B0051717E}
 		{50C9CC1F-27F6-4F33-AC9A-FF166A540ACF} = {16C6CAB6-7D86-4043-98AE-7621BC136AA1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8FF6820-1676-4E1E-996E-FCE4AE4562C4}
 	EndGlobalSection
 	GlobalSection(CodealikeProperties) = postSolution
 		SolutionGuid = 9875458a-9274-46e6-a11e-e68a4f2ef5c7
