@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms", "Algorithms\Al
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DirectX11", "DirectX11", "{16C6CAB6-7D86-4043-98AE-7621BC136AA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3-Tetrahedron", "Lab3-Tetrahedron\Lab3-Tetrahedron.csproj", "{50C9CC1F-27F6-4F33-AC9A-FF166A540ACF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,12 @@ Global
 		{04C39BF4-5711-40EF-8472-1483A1DF7825}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04C39BF4-5711-40EF-8472-1483A1DF7825}.voronoi|Any CPU.ActiveCfg = Release|Any CPU
 		{04C39BF4-5711-40EF-8472-1483A1DF7825}.voronoi|Any CPU.Build.0 = Release|Any CPU
+		{50C9CC1F-27F6-4F33-AC9A-FF166A540ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50C9CC1F-27F6-4F33-AC9A-FF166A540ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50C9CC1F-27F6-4F33-AC9A-FF166A540ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50C9CC1F-27F6-4F33-AC9A-FF166A540ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50C9CC1F-27F6-4F33-AC9A-FF166A540ACF}.voronoi|Any CPU.ActiveCfg = Debug|Any CPU
+		{50C9CC1F-27F6-4F33-AC9A-FF166A540ACF}.voronoi|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +76,7 @@ Global
 		{C817B76A-97D4-4CC1-9651-3D405934AC83} = {16C6CAB6-7D86-4043-98AE-7621BC136AA1}
 		{BEDF8CD8-078B-4BC6-A388-B63D36499ABB} = {16C6CAB6-7D86-4043-98AE-7621BC136AA1}
 		{16C6CAB6-7D86-4043-98AE-7621BC136AA1} = {79E45F9D-B161-4C12-AB0D-306B0051717E}
+		{50C9CC1F-27F6-4F33-AC9A-FF166A540ACF} = {16C6CAB6-7D86-4043-98AE-7621BC136AA1}
 	EndGlobalSection
 	GlobalSection(CodealikeProperties) = postSolution
 		SolutionGuid = 9875458a-9274-46e6-a11e-e68a4f2ef5c7
