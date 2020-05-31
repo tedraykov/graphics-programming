@@ -7,18 +7,28 @@ using SlimDX.D3DCompiler;
 namespace Core {
     namespace Vertex {
 
+        [StructLayout(LayoutKind.Sequential)]
+        public struct VertexPMN {
+            public Vector3 Pos;
+            public Material Material;
+            public Vector3 Normal;
 
+            public VertexPMN(Vector3 pos, Material material, Vector3 normal) {
+                Pos = pos;
+                Material = material;
+                Normal = normal;
+
+            }
+
+            public static readonly int Stride = Marshal.SizeOf(typeof (VertexPMN));
+        }
+    
         [StructLayout(LayoutKind.Sequential)]
         public struct VertexPC {
             public Vector3 Pos;
             public Color4 Color;
 
             public VertexPC(Vector3 pos, Color color) {
-                Pos = pos;
-                Color = color;
-            }
-
-            public VertexPC(Vector3 pos, Color4 color) {
                 Pos = pos;
                 Color = color;
             }

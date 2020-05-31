@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -12,15 +12,13 @@ using SlimDX.Direct3D11;
 using Buffer = SlimDX.Direct3D11.Buffer;
 using Debug = System.Diagnostics.Debug;
 
-namespace Lab3_Skull
-{
+namespace Lab_3_2 {
     using Core.Vertex;
 
     using Effect = SlimDX.Direct3D11.Effect;
     using System.Globalization;
-
-    public class Lab3Skull : D3DApp
-    {
+    
+    public class Skull :D3DApp {
         private Buffer _vb;
         private Buffer _ib;
 
@@ -47,8 +45,7 @@ namespace Lab3_Skull
 
 
         private bool _disposed;
-        public Lab3Skull(IntPtr hInstance) : base(hInstance)
-        {
+        public Skull(IntPtr hInstance) : base(hInstance) {
             _vb = null;
             _ib = null;
             _fx = null;
@@ -57,25 +54,22 @@ namespace Lab3_Skull
             _inputLayout = null;
             _wireframeRS = null;
             _skullIndexCount = 0;
-            _theta = 1.5f * MathF.PI;
-            _phi = 0.1f * MathF.PI;
+            _theta = 1.5f*MathF.PI;
+            _phi = 0.1f*MathF.PI;
             _radius = 20.0f;
 
-            MainWindowCaption = "Skull Demo";
+            MainWindowCaption = "Lab 3.2 - Skull";
 
-            _lastMousePos = new Point(0, 0);
+            _lastMousePos = new Point(0,0);
 
             _view = Matrix.Identity;
             _proj = Matrix.Identity;
             _skullWorld = Matrix.Translation(0.0f, -2.0f, 0.0f);
 
         }
-        protected override void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
+        protected override void Dispose(bool disposing) {
+            if (!_disposed) {
+                if (disposing) {
                     Util.ReleaseCom(ref _vb);
                     Util.ReleaseCom(ref _ib);
                     Util.ReleaseCom(ref _fx);
@@ -86,10 +80,8 @@ namespace Lab3_Skull
             }
             base.Dispose(disposing);
         }
-        public override bool Init()
-        {
-            if (!base.Init())
-            {
+        public override bool Init() {
+            if (!base.Init()) {
                 return false;
             }
 
@@ -97,8 +89,7 @@ namespace Lab3_Skull
             BuildFX();
             BuildVertexLayout();
 
-            var wireFrameDesc = new RasterizerStateDescription
-            {
+            var wireFrameDesc = new RasterizerStateDescription {
                 FillMode = FillMode.Wireframe,
                 CullMode = CullMode.Back,
                 IsFrontCounterclockwise = false,
@@ -109,15 +100,15 @@ namespace Lab3_Skull
 
             return true;
         }
-        public override void OnResize()
-        {
+        public override void OnResize() {
             base.OnResize();
             _proj = Matrix.PerspectiveFovLH(0.25f * MathF.PI, AspectRatio, 1.0f, 1000.0f);
         }
-        public override void UpdateScene(float dt)
-        {
+        public override void UpdateScene(float dt) {
             base.UpdateScene(dt);
-
+    
+            _theta += (0.01f * Timer.FrameTime) % MathF.PI * 4;
+            
             // Get camera position from polar coords
             var x = _radius * MathF.Sin(_phi) * MathF.Cos(_theta);
             var z = _radius * MathF.Sin(_phi) * MathF.Sin(_theta);
@@ -129,8 +120,7 @@ namespace Lab3_Skull
             var up = new Vector3(0, 1, 0);
             _view = Matrix.LookAtLH(pos, target, up);
         }
-        public override void DrawScene()
-        {
+        public override void DrawScene() {
             base.DrawScene();
             ImmediateContext.ClearRenderTargetView(RenderTargetView, Color.LightSteelBlue);
             ImmediateContext.ClearDepthStencilView(DepthStencilView, DepthStencilClearFlags.Depth | DepthStencilClearFlags.Stencil, 1.0f, 0);
@@ -143,31 +133,26 @@ namespace Lab3_Skull
             ImmediateContext.InputAssembler.SetVertexBuffers(0, new VertexBufferBinding(_vb, VertexPC.Stride, 0));
             ImmediateContext.InputAssembler.SetIndexBuffer(_ib, Format.R32_UInt, 0);
 
-            var wvp = _skullWorld * _view * _proj;
+            var wvp = _skullWorld*_view*_proj;
 
             _fxWVP.SetMatrix(wvp);
 
-            for (var i = 0; i < _tech.Description.PassCount; i++)
-            {
+            for (var i = 0; i < _tech.Description.PassCount; i++) {
                 _tech.GetPassByIndex(i).Apply(ImmediateContext);
                 ImmediateContext.DrawIndexed(_skullIndexCount, 0, 0);
             }
             SwapChain.Present(0, PresentFlags.None);
         }
 
-        protected override void OnMouseDown(object sender, MouseEventArgs mouseEventArgs)
-        {
+        protected override void OnMouseDown(object sender, MouseEventArgs mouseEventArgs) {
             _lastMousePos = mouseEventArgs.Location;
             Window.Capture = true;
         }
-        protected override void OnMouseUp(object sender, MouseEventArgs e)
-        {
+        protected override void OnMouseUp(object sender, MouseEventArgs e) {
             Window.Capture = false;
         }
-        protected override void OnMouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
+        protected override void OnMouseMove(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Left) {
                 var dx = MathF.ToRadians(0.25f * (e.X - _lastMousePos.X));
                 var dy = MathF.ToRadians(0.25f * (e.Y - _lastMousePos.Y));
 
@@ -175,9 +160,7 @@ namespace Lab3_Skull
                 _phi += dy;
 
                 _phi = MathF.Clamp(_phi, 0.1f, MathF.PI - 0.1f);
-            }
-            else if (e.Button == MouseButtons.Right)
-            {
+            } else if (e.Button == MouseButtons.Right) {
                 var dx = 0.05f * (e.X - _lastMousePos.X);
                 var dy = 0.05f * (e.Y - _lastMousePos.Y);
                 _radius += dx - dy;
@@ -186,69 +169,59 @@ namespace Lab3_Skull
             }
             _lastMousePos = e.Location;
         }
-        private void BuildGeometryBuffers()
-        {
-            try
-            {
+        private void BuildGeometryBuffers() {
+            try {
                 var vertices = new List<VertexPC>();
                 var indices = new List<int>();
                 var vcount = 0;
                 var tcount = 0;
-                using (var reader = new StreamReader("Models\\skull.txt"))
-                {
-
+                using (var reader = new StreamReader("Models\\skull.txt")) {
+                    
 
                     var input = reader.ReadLine();
                     if (input != null)
                         // VertexCount: X
-                        vcount = Convert.ToInt32(input.Split(new[] { ':' })[1].Trim());
+                        vcount = Convert.ToInt32(input.Split(new[] {':'})[1].Trim());
 
                     input = reader.ReadLine();
-                    if (input != null)
+                    if (input != null) 
                         //TriangleCount: X
                         tcount = Convert.ToInt32(input.Split(new[] { ':' })[1].Trim());
 
                     var c = Color.Black;
                     // skip ahead to the vertex data
-                    do
-                    {
+                    do {
                         input = reader.ReadLine();
                     } while (input != null && !input.StartsWith("{"));
 
                     //set fixed number format format for correct parsing of the vector
-                    var provider = new NumberFormatInfo
-                    {
-                        NumberDecimalSeparator = ".",
+                    var provider = new NumberFormatInfo {
+                        NumberDecimalSeparator = ".", 
                         NumberGroupSeparator = ","
                     };
 
                     // Get the vertices  
-                    for (var i = 0; i < vcount; i++)
-                    {
+                    for (var i = 0; i < vcount; i++) {
                         input = reader.ReadLine();
-                        if (input != null)
-                        {
-                            var vals = input.Split(new[] { ' ' });
+                        if (input != null) {
+                            var vals = input.Split(new[] {' '});
                             vertices.Add(new VertexPC(
                                 new Vector3(
-                                    Convert.ToSingle(vals[0].Trim(), provider),
+                                    Convert.ToSingle(vals[0].Trim(),provider),
                                     Convert.ToSingle(vals[1].Trim(), provider),
-                                    Convert.ToSingle(vals[2].Trim(), provider)),
+                                    Convert.ToSingle(vals[2].Trim(), provider)), 
                                 c));
                         }
                     }
                     // skip ahead to the index data
-                    do
-                    {
+                    do {
                         input = reader.ReadLine();
                     } while (input != null && !input.StartsWith("{"));
                     // Get the indices
-                    _skullIndexCount = 3 * tcount;
-                    for (var i = 0; i < tcount; i++)
-                    {
-                        input = reader.ReadLine();
-                        if (input == null)
-                        {
+                    _skullIndexCount = 3*tcount;
+                    for (var i = 0; i < tcount; i++) {
+                            input = reader.ReadLine();
+                        if (input == null) {
                             break;
                         }
                         var m = input.Trim().Split(new[] { ' ' });
@@ -258,48 +231,39 @@ namespace Lab3_Skull
                     }
                 }
 
-                var vbd = new BufferDescription(VertexPC.Stride * vcount, ResourceUsage.Immutable,
+                var vbd = new BufferDescription(VertexPC.Stride*vcount, ResourceUsage.Immutable, 
                     BindFlags.VertexBuffer, CpuAccessFlags.None, ResourceOptionFlags.None, 0);
                 _vb = new Buffer(Device, new DataStream(vertices.ToArray(), false, false), vbd);
 
-                var ibd = new BufferDescription(sizeof(int) * _skullIndexCount, ResourceUsage.Immutable,
+                var ibd = new BufferDescription(sizeof (int)*_skullIndexCount, ResourceUsage.Immutable, 
                     BindFlags.IndexBuffer, CpuAccessFlags.None, ResourceOptionFlags.None, 0);
                 _ib = new Buffer(Device, new DataStream(indices.ToArray(), false, false), ibd);
 
 
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
         }
-        private void BuildFX()
-        {
+        private void BuildFX() {
             ShaderBytecode compiledShader = null;
-            try
-            {
+            try {
                 compiledShader = new ShaderBytecode(new DataStream(File.ReadAllBytes("fx/color.fxo"), false, false));
                 _fx = new Effect(Device, compiledShader);
-            }
-            catch (Exception ex)
-            {
+            } catch (Exception ex) {
                 MessageBox.Show(ex.Message);
                 return;
-            }
-            finally
-            {
+            } finally {
                 Util.ReleaseCom(ref compiledShader);
             }
 
             _tech = _fx.GetTechniqueByName("ColorTech");
             _fxWVP = _fx.GetVariableByName("gWorldViewProj").AsMatrix();
         }
-        private void BuildVertexLayout()
-        {
+        private void BuildVertexLayout() {
             var vertexDesc = new[] {
-                new InputElement("POSITION", 0, Format.R32G32B32_Float,
+                new InputElement("POSITION", 0, Format.R32G32B32_Float, 
                     0, 0, InputClassification.PerVertexData, 0),
-                new InputElement("COLOR", 0, Format.R32G32B32A32_Float,
+                new InputElement("COLOR", 0, Format.R32G32B32A32_Float, 
                     12, 0, InputClassification.PerVertexData, 0)
             };
             Debug.Assert(_tech != null);
@@ -309,14 +273,11 @@ namespace Lab3_Skull
 
     }
 
-    static class Program
-    {
-        static void Main()
-        {
+    static class Program {
+        static void Main() {
             Configuration.EnableObjectTracking = true;
-            var app = new Lab3Skull(Process.GetCurrentProcess().Handle);
-            if (!app.Init())
-            {
+            var app = new Skull(Process.GetCurrentProcess().Handle);
+            if (!app.Init()) {
                 return;
             }
             app.Run();

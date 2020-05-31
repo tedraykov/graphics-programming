@@ -6,8 +6,8 @@
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
         <ProjectGuid>{50C9CC1F-27F6-4F33-AC9A-FF166A540ACF}</ProjectGuid>
         <OutputType>WinExe</OutputType>
-        <RootNamespace>Lab3_Tetrahedron</RootNamespace>
-        <AssemblyName>Lab3_Tetrahedron</AssemblyName>
+        <RootNamespace>Lab_3_1</RootNamespace>
+        <AssemblyName>Lab_3_1</AssemblyName>
         <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

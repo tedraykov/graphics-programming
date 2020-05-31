@@ -9,9 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{79
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-BoxDemo", "BoxDemo\2-BoxDemo.csproj", "{2183B279-2804-4749-803E-3DD4DD8EA9D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3.2-Skull", "SkullDemo\Lab3.2-Skull.csproj", "{85770DD8-59C4-48E6-BDD5-26760B9691B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3-2-Skull", "Lab3-2-Skull\Lab3-2-Skull.csproj", "{85770DD8-59C4-48E6-BDD5-26760B9691B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "7-LightingDemo", "LightingDemo\7-LightingDemo.csproj", "{C817B76A-97D4-4CC1-9651-3D405934AC83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab4-LightingCube", "Lab4-LightingCube\Lab4-LightingCube.csproj", "{C817B76A-97D4-4CC1-9651-3D405934AC83}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "9-CrateDemo", "CrateDemo\9-CrateDemo.csproj", "{BEDF8CD8-078B-4BC6-A388-B63D36499ABB}"
 EndProject
@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms", "Algorithms\Al
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DirectX11", "DirectX11", "{16C6CAB6-7D86-4043-98AE-7621BC136AA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3-Tetrahedron", "Lab3-Tetrahedron\Lab3-Tetrahedron.csproj", "{50C9CC1F-27F6-4F33-AC9A-FF166A540ACF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3-1-Tetrahedron", "Lab3-1-Tetrahedron\Lab3-1-Tetrahedron.csproj", "{50C9CC1F-27F6-4F33-AC9A-FF166A540ACF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

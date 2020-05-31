@@ -11,10 +11,10 @@ using SlimDX.DXGI;
 using Buffer = SlimDX.Direct3D11.Buffer;
 using Debug = System.Diagnostics.Debug;
 
-namespace Lab3_Tetrahedron {
+namespace Lab_3_1 {
     using Effect = Effect;
 
-    public class BoxApp : D3DApp {
+    public class Tetrahedron : D3DApp {
     private Buffer _boxVB;
     private Buffer _boxIB;
 
@@ -38,7 +38,7 @@ namespace Lab3_Tetrahedron {
 
     private bool _disposed;
 
-    public BoxApp(IntPtr hInstance) : base(hInstance) {
+    public Tetrahedron(IntPtr hInstance) : base(hInstance) {
         _boxIB = null;
         _boxVB = null;
         _fx = null;
@@ -235,7 +235,7 @@ namespace Lab3_Tetrahedron {
     static class Program {
         static void Main(string[] args) {
             Configuration.EnableObjectTracking = true;
-            var app = new BoxApp(Process.GetCurrentProcess().Handle);
+            var app = new Tetrahedron(Process.GetCurrentProcess().Handle);
             if (!app.Init()) {
                 return;
             }

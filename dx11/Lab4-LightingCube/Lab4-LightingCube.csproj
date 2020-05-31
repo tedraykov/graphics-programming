@@ -7,8 +7,8 @@
     <ProjectGuid>{C817B76A-97D4-4CC1-9651-3D405934AC83}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LightingDemo</RootNamespace>
-    <AssemblyName>LightingDemo</AssemblyName>
+    <RootNamespace>Lab_4_1</RootNamespace>
+    <AssemblyName>Lab_4_1</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -66,18 +66,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FX\LightHelper.fx">
+    <Content Include="FX\color.fx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="FX\Lighting.fx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="FX\LightingHelper.fx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>cd FX 
-
-fxc /Fc /Zi /T fx_5_0 /Fo Lighting.fxo Lighting.fx</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
